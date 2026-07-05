@@ -40,9 +40,9 @@ def main() -> None:
         d.mkdir(parents=True, exist_ok=True)
 
     # ── Section 1: Alert Generation ──────────────────────────────────────────
-    model, label_encoder, scaler, test_df = alert_generator.load_artifacts()
+    model, label_encoder, scaler, test_df, src_encoder, dst_encoder = alert_generator.load_artifacts()
     samples, feature_cols = alert_generator.select_samples(test_df, n=config.N_SAMPLES)
-    alerts = alert_generator.generate_alerts(model, samples, feature_cols, scaler=scaler)
+    alerts = alert_generator.generate_alerts(model, samples, feature_cols, scaler=scaler, src_encoder=src_encoder, dst_encoder=dst_encoder)
 
     # ── Section 2: LLM Enrichment ────────────────────────────────────────────
     reports = llm_enricher.enrich_alerts(alerts)

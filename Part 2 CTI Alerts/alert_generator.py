@@ -12,6 +12,7 @@ Responsibilities:
 
 """
 
+from importlib import resources
 import json
 import sys
 import uuid
@@ -51,6 +52,20 @@ def load_artifacts() -> tuple:
     else:
         print(f"  ⚠ Encoder not found at {config.ENCODER_PATH} – using built-in class map.")
 
+    src_encoder = None
+    if config.SRC_ENCODER_PATH.exists():
+        src_encoder = joblib.load(config.SRC_ENCODER_PATH)
+        print(f"  ✔ Src encoder loaded: {config.SRC_ENCODER_PATH.name}")
+    else:
+        print(f"  ⚠ Src encoder not found at {config.SRC_ENCODER_PATH} – using built-in class map.")
+
+    dst_encoder = None
+    if config.DST_ENCODER_PATH.exists():
+        dst_encoder = joblib.load(config.DST_ENCODER_PATH)
+        print(f"  ✔ Dst encoder loaded: {config.DST_ENCODER_PATH.name}")
+    else:
+        print(f"  ⚠ Dst encoder not found at {config.DST_ENCODER_PATH} – using built-in class map.")
+
     scaler = None
     if config.SCALER_PATH.exists():
         scaler = joblib.load(config.SCALER_PATH)
@@ -61,7 +76,7 @@ def load_artifacts() -> tuple:
     test_df = pd.read_csv(config.TEST_CSV)
     print(f"  ✔ Test data:      {len(test_df):,} rows")
 
-    return model, label_encoder, scaler, test_df
+    return model, label_encoder, scaler, test_df, src_encoder, dst_encoder
 
 
 # Sample selection
@@ -118,6 +133,7 @@ _OBSERVATION_KEYS = [
 
 
 def _network_component(row: pd.Series) -> dict:
+    model, label_encoder, scaler, test_df, src_encoder, dst_encoder = load_artifacts()
     """Derive the affected network component description from feature values."""
     proto = "unknown"
     if row.get("is_tcp", 0) == 1:
@@ -127,8 +143,11 @@ def _network_component(row: pd.Series) -> dict:
     elif row.get("is_icmp", 0) == 1:
         proto = "ICMP"
 
-    src = row.get("src_ip", "N/A")
-    dst = row.get("dst_ip", "N/A")
+    src_encoded = int(row["src_ip"])
+    dst_encoded = int(row["dst_ip"])
+
+    src = src_encoder.inverse_transform([src_encoded])[0]
+    dst = dst_encoder.inverse_transform([dst_encoded])[0]
 
     return {
         "source_ip":      str(src),
@@ -220,11 +239,13 @@ def build_alert(
     }
 
 
-def generate_alerts(
+def     generate_alerts(
     model:        object,
     samples:      pd.DataFrame,
     feature_cols: list[str],
     scaler:       object = None,
+    src_encoder:  object = None,
+    dst_encoder:  object = None,
 ) -> list[dict]:
     """
     Run inference on all samples, build alert objects, persist them to disk.

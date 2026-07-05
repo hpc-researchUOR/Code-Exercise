@@ -12,7 +12,6 @@ This file is the document submitted separately with the exercise.
 """
 
 import alert_generator
-import alert_generator
 import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
@@ -156,10 +155,10 @@ def render_incident_report(
 
     | Field          | Value                                                  |
     |----------------|--------------------------------------------------------|
-    | Source IP      | {comp.get('source_ip', 'N/A')}                        |
-    | Destination IP | {comp.get('destination_ip', 'N/A')}                   |
-    | Protocol       | {comp.get('protocol', 'N/A')}                         |
-    | Description    | {comp.get('description', 'N/A')}                      |
+    | Source IP      | {alert.get('network_observations', {}).get('source_ip', 'N/A')}      |
+    | Destination IP | {alert.get('network_observations', {}).get('destination_ip', 'N/A')} |
+    | Protocol       | {alert.get('network_observations', {}).get('protocol', 'N/A')} |
+    | Description    | {alert.get('network_observations', {}).get('description', 'N/A')} |
 
     ---
 
