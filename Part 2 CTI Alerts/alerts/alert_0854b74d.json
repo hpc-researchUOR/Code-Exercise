@@ -1,0 +1,52 @@
+{
+  "alert_id": "0854b74d-8fce-4917-8c39-75ae18e66c02",
+  "schema_version": "1.0",
+  "detection_timestamp": "2026-07-05T13:29:38.656888+00:00",
+  "sample_index": 4,
+  "model_metadata": {
+    "model_type": "XGBoostClassifier",
+    "model_version": "xgboost_best_model",
+    "training_f1_macro": 0.89,
+    "num_classes": 4,
+    "feature_count": 29
+  },
+  "predicted_threat": {
+    "class_id": 0,
+    "class_name": "Benign",
+    "confidence": 0.999363,
+    "confidence_pct": "99.94%"
+  },
+  "alternative_predictions": [
+    {
+      "class_id": 2,
+      "class_name": "DoS",
+      "probability": 0.000535
+    },
+    {
+      "class_id": 3,
+      "class_name": "DDoS",
+      "probability": 5.1e-05
+    },
+    {
+      "class_id": 1,
+      "class_name": "BruteForce",
+      "probability": 5e-05
+    }
+  ],
+  "network_observations": {
+    "packet_length": 606,
+    "src_ip": "173.249.31.2",
+    "dst_ip": "172.18.139.27",
+    "src_port": 443.0,
+    "dst_port": 51272.0,
+    "is_tcp": 1,
+    "is_udp": 0,
+    "is_icmp": 0
+  },
+  "affected_network_component": {
+    "source_ip": "173.249.31.2",
+    "destination_ip": "172.18.139.27",
+    "protocol": "TCP",
+    "description": "Network flow from 173.249.31.2 to 172.18.139.27 over TCP"
+  }
+}

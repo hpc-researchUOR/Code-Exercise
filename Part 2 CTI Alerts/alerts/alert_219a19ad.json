@@ -1,0 +1,52 @@
+{
+  "alert_id": "219a19ad-5755-4558-ba27-125ac025ab90",
+  "schema_version": "1.0",
+  "detection_timestamp": "2026-07-05T13:29:28.676206+00:00",
+  "sample_index": 0,
+  "model_metadata": {
+    "model_type": "XGBoostClassifier",
+    "model_version": "xgboost_best_model",
+    "training_f1_macro": 0.89,
+    "num_classes": 4,
+    "feature_count": 29
+  },
+  "predicted_threat": {
+    "class_id": 1,
+    "class_name": "BruteForce",
+    "confidence": 0.999973,
+    "confidence_pct": "100.00%"
+  },
+  "alternative_predictions": [
+    {
+      "class_id": 2,
+      "class_name": "DoS",
+      "probability": 1.6e-05
+    },
+    {
+      "class_id": 3,
+      "class_name": "DDoS",
+      "probability": 8e-06
+    },
+    {
+      "class_id": 0,
+      "class_name": "Benign",
+      "probability": 3e-06
+    }
+  ],
+  "network_observations": {
+    "packet_length": 1044,
+    "src_ip": "192.168.0.10",
+    "dst_ip": "172.31.0.134",
+    "src_port": -1.0,
+    "dst_port": -1.0,
+    "is_tcp": 0,
+    "is_udp": 0,
+    "is_icmp": 1
+  },
+  "affected_network_component": {
+    "source_ip": "192.168.0.10",
+    "destination_ip": "172.31.0.134",
+    "protocol": "ICMP",
+    "description": "Network flow from 192.168.0.10 to 172.31.0.134 over ICMP"
+  }
+}

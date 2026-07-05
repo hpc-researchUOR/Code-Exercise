@@ -1,0 +1,26 @@
+{
+  "report_id": "be2ee8b3-919b-496d-844b-cf46514bef54",
+  "alert_id": "219a19ad-5755-4558-ba27-125ac025ab90",
+  "alert_summary": {
+    "predicted_class": "BruteForce",
+    "confidence": 0.999973,
+    "detection_ts": "2026-07-05T13:29:28.676206+00:00"
+  },
+  "llm_enrichment": {
+    "threat_context": "BruteForce attack detected on a network component with IP address 192.168.0.10, originating from the source IP 172.31.0.134 and using ICMP protocol.",
+    "attack_correlation": "High packet rate from a single source IP",
+    "severity": "HIGH",
+    "severity_justification": "The high packet rate indicates that the attack is likely to be persistent, as it suggests an ongoing brute-force attempt.",
+    "possible_impact": "Potential impact on the affected component: The network flow may be monitored for suspicious activity. If not properly mitigated, this could lead to unauthorized access or data breaches.",
+    "immediate_response": "Implement strong security measures such as firewalls, intrusion detection systems (IDS), and regular security audits.",
+    "long_term_mitigation": "Regularly update security protocols and employ advanced threat hunting techniques.",
+    "human_review_required": "YES",
+    "human_review_justification": "The alert indicates a high risk of a brute-force attack. Human review is necessary to ensure that the response aligns with best practices for network security.",
+    "_llm_meta": {
+      "model": "qwen2.5:0.5b",
+      "generation_time_s": 4.23,
+      "ollama_available": true,
+      "timestamp": "2026-07-05T13:29:47.441597+00:00"
+    }
+  }
+}

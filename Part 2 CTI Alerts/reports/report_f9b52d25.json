@@ -1,0 +1,26 @@
+{
+  "report_id": "71924401-28ce-4adb-b059-2273296e410b",
+  "alert_id": "f9b52d25-7e28-4413-af7d-9e8bfc587dec",
+  "alert_summary": {
+    "predicted_class": "DDoS",
+    "confidence": 0.998353,
+    "detection_ts": "2026-07-05T13:29:33.571041+00:00"
+  },
+  "llm_enrichment": {
+    "threat_context": "DDoS originating from multiple sources (botnet) with high aggregate bandwidth, multiple source IPs, and amplification patterns.",
+    "attack_correlation": "High aggregate bandwidth, multiple source IPs, and amplification patterns are typical for DDoS attacks.",
+    "severity": "HIGH",
+    "severity_justification": "The alert indicates a significant increase in the number of sources (multiple IP addresses) and the presence of amplification patterns. This suggests a high likelihood of an attack with potential for widespread impact.",
+    "possible_impact": "Impact is significantly higher than single-source DoS, indicating that DDoS attacks can cause substantial damage to networks and systems.",
+    "immediate_response": "Immediate action should be taken to mitigate the threat by identifying and blocking the source IP addresses. This could involve using network segmentation, firewalls, or intrusion detection systems.",
+    "long_term_mitigation": "Long-term mitigation strategies may include implementing more advanced security measures such as load balancing, encryption, and secure communication protocols.",
+    "human_review_required": "YES",
+    "human_review_justification": "The alert provides valuable context about the nature of the attack (DDoS) and the potential impact. Human review is necessary to ensure that all relevant information has been captured and analyzed.",
+    "_llm_meta": {
+      "model": "qwen2.5:0.5b",
+      "generation_time_s": 2.85,
+      "ollama_available": true,
+      "timestamp": "2026-07-05T13:29:53.197270+00:00"
+    }
+  }
+}

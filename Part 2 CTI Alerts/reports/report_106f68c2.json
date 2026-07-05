@@ -1,0 +1,26 @@
+{
+  "report_id": "91796670-5fa2-4a0c-a843-975862666072",
+  "alert_id": "106f68c2-63fe-4eeb-8112-4ff1f2fae185",
+  "alert_summary": {
+    "predicted_class": "DoS",
+    "confidence": 0.999439,
+    "detection_ts": "2026-07-05T13:29:31.123325+00:00"
+  },
+  "llm_enrichment": {
+    "threat_context": "The network observation indicates a DoS attack on the source IP address 172.31.0.134, with a packet length of 1350 bytes/s and a large packet size.",
+    "attack_correlation": "Slowloris",
+    "severity": "MEDIUM",
+    "severity_justification": "The observed attack pattern (large packet sizes) is indicative of Slowloris, which targets server-side processes by sending SYN packets to exhaust the server's resources. The high flow bytes/s and large packet sizes suggest a DoS attack.",
+    "possible_impact": "Potential impact on the affected component: The network flow from the source IP to the destination IP over UDP is likely to be blocked or disrupted, leading to service disruption.",
+    "immediate_response": "Immediate response actions include isolating the affected system, terminating the attack, and restoring normal operations. Further investigation should be conducted to determine the root cause of the DoS attack.",
+    "long_term_mitigation": "Long-term mitigation strategies may involve implementing additional security measures such as firewalls, intrusion detection systems (IDS), and regular security audits.",
+    "human_review_required": "Yes",
+    "human_review_justification": "The alert data alone is insufficient to make a comprehensive human review. A more detailed analysis of the network traffic patterns, threat intelligence sources, and known attack vectors would be necessary for an accurate assessment.",
+    "_llm_meta": {
+      "model": "qwen2.5:0.5b",
+      "generation_time_s": 2.9,
+      "ollama_available": true,
+      "timestamp": "2026-07-05T13:29:50.346569+00:00"
+    }
+  }
+}

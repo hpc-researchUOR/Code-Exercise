@@ -1,0 +1,26 @@
+{
+  "report_id": "ffc76042-7122-41fd-ba73-17b4bd5035e3",
+  "alert_id": "ba0f79bf-d2e5-4d72-9d53-7c4f2f057230",
+  "alert_summary": {
+    "predicted_class": "Benign",
+    "confidence": 0.998593,
+    "detection_ts": "2026-07-05T13:29:36.085469+00:00"
+  },
+  "llm_enrichment": {
+    "threat_context": "Benign traffic from a known source IP (192.168.0.3) to a known destination IP (192.168.0.1).",
+    "attack_correlation": "The observed network traffic is benign and does not exhibit any known attack patterns.",
+    "severity": "LOW",
+    "severity_justification": "Benign traffic indicates no malicious intent, making it a low-risk category.",
+    "possible_impact": "No immediate impact on the affected component. The traffic appears to be normal and should not cause significant disruptions.",
+    "immediate_response": "Monitor the network for any unusual activity or changes in behavior.",
+    "long_term_mitigation": "Regularly review and update security measures to protect against similar patterns.",
+    "human_review_required": "YES",
+    "human_review_justification": "The alert is a benign traffic anomaly, but it's important to monitor the network for any potential threats. Human review can help identify if there are any deviations from normal behavior that warrant further investigation.",
+    "_llm_meta": {
+      "model": "qwen2.5:0.5b",
+      "generation_time_s": 2.73,
+      "ollama_available": true,
+      "timestamp": "2026-07-05T13:29:55.928760+00:00"
+    }
+  }
+}

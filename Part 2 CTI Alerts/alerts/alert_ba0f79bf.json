@@ -1,0 +1,52 @@
+{
+  "alert_id": "ba0f79bf-d2e5-4d72-9d53-7c4f2f057230",
+  "schema_version": "1.0",
+  "detection_timestamp": "2026-07-05T13:29:36.085469+00:00",
+  "sample_index": 3,
+  "model_metadata": {
+    "model_type": "XGBoostClassifier",
+    "model_version": "xgboost_best_model",
+    "training_f1_macro": 0.89,
+    "num_classes": 4,
+    "feature_count": 29
+  },
+  "predicted_threat": {
+    "class_id": 0,
+    "class_name": "Benign",
+    "confidence": 0.998593,
+    "confidence_pct": "99.86%"
+  },
+  "alternative_predictions": [
+    {
+      "class_id": 2,
+      "class_name": "DoS",
+      "probability": 0.001062
+    },
+    {
+      "class_id": 3,
+      "class_name": "DDoS",
+      "probability": 0.000308
+    },
+    {
+      "class_id": 1,
+      "class_name": "BruteForce",
+      "probability": 3.7e-05
+    }
+  ],
+  "network_observations": {
+    "packet_length": 1856,
+    "src_ip": "192.168.0.3",
+    "dst_ip": "192.168.0.1",
+    "src_port": -1.0,
+    "dst_port": -1.0,
+    "is_tcp": 0,
+    "is_udp": 0,
+    "is_icmp": 0
+  },
+  "affected_network_component": {
+    "source_ip": "192.168.0.3",
+    "destination_ip": "192.168.0.1",
+    "protocol": "unknown",
+    "description": "Network flow from 192.168.0.3 to 192.168.0.1 over unknown"
+  }
+}
