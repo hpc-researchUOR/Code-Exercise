@@ -11,18 +11,15 @@ Responsibilities:
   • Save each alert to ALERTS_DIR.
 
 """
-
+import joblib
+import numpy as np
 from importlib import resources
 import json
 import sys
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
-
-import joblib
-import numpy as np
 import pandas as pd
-
 import config
 
 
@@ -117,7 +114,7 @@ def select_samples(test_df: pd.DataFrame, n: int = config.N_SAMPLES) -> tuple[pd
 
     return samples, feature_cols
 
-
+model, label_encoder, scaler, test_df, src_encoder, dst_encoder = load_artifacts()
 
 # Alert construction helpers
 
@@ -158,18 +155,33 @@ def _network_component(row: pd.Series) -> dict:
 
 
 def _network_observations(row: pd.Series) -> dict:
+    model, label_encoder, scaler, test_df, src_encoder, dst_encoder = load_artifacts()
     """Extract a curated subset of feature values for the alert."""
     obs = {}
+
     for key in _OBSERVATION_KEYS:
-        if key in row.index:
-            val = row[key]
-            if isinstance(val, (float, np.floating)):
-                val = round(float(val), 4)
-            elif isinstance(val, (int, np.integer)):
-                val = int(val)
-            else:
-                val = str(val)
-            obs[key] = val
+        if key not in row.index:
+            continue
+
+        val = row[key]
+
+        # Decode source IP
+        if key == "src_ip":
+            val = src_encoder.inverse_transform([int(val)])[0]
+
+        # Decode destination IP
+        elif key == "dst_ip":
+            val = dst_encoder.inverse_transform([int(val)])[0]
+
+        # Format numeric values
+        elif isinstance(val, (float, np.floating)):
+            val = round(float(val), 4)
+
+        elif isinstance(val, (int, np.integer)):
+            val = int(val)
+
+        obs[key] = val
+
     return obs
 
 
