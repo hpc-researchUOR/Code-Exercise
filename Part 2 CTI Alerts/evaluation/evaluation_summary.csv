@@ -1,0 +1,6 @@
+alert_id,predicted_class,confidence,severity_assigned,severity_reasonable,threat_match,hallucination_count,hallucinations,generation_time_s,llm_available,human_review_required
+219a19ad-5755-4558-ba27-125ac025ab90,BruteForce,1.0000,HIGH,True,True,0,none,4.23,True,YES
+106f68c2-63fe-4eeb-8112-4ff1f2fae185,DoS,0.9994,MEDIUM,False,True,0,none,2.9,True,Yes
+f9b52d25-7e28-4413-af7d-9e8bfc587dec,DDoS,0.9984,HIGH,True,True,0,none,2.85,True,YES
+ba0f79bf-d2e5-4d72-9d53-7c4f2f057230,Benign,0.9986,LOW,True,True,0,none,2.73,True,YES
+0854b74d-8fce-4917-8c39-75ae18e66c02,Benign,0.9994,LOW,True,True,0,none,2.77,True,YES
