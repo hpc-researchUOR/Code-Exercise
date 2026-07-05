@@ -1,0 +1,26 @@
+# Ignore all ZIP files
+*.zip
+
+# Ignore specific folders
+Benign/
+BruteForce/
+DDOS/
+DOS/
+__pycache__/
+*.pyc
+
+alerts/
+reports/
+evaluation/
+
+*.pkl
+*.pth
+
+csv_output/
+new_csv_output/
+
+.ipynb_checkpoints/
+
+*.zip
+
+*.csv
